@@ -2,18 +2,7 @@
 
 # builds all targets for gluon (disk space needed: ~ 7 GB each)
 #
-# Install:
-#
-# sudo apt-get install git make gcc g++ unzip libncurses5-dev zlib1g-dev subversion gawk bzip2 libssl-dev ecdsautils
-# git clone https://github.com/freifunk-gluon/gluon.git
-# cd gluon
-# # adapt your site
-# make update
-# ./buildAndDeploy.sh
-# 
-# tip: call this script through ccze: ./buildAndDeploy.sh | ccze -A
-# 
-# the gluon autoupdater only works with signed images. How to generate the private key: https://wiki.freifunk.net/ECDSA_Util#ecdsakeygen
+# Install: https://github.com/herbetom/gluon-build-script/blob/master/README.md
 
 # Configuration
 GLUON_RELEASE="1.2.x-"$(date '+%Y%m%d-%H%M')""
@@ -26,6 +15,7 @@ BROKEN=0
 
 #T="ar71xx-generic brcm2708-bcm2708 brcm2708-bcm2709 x86-64"
 T="$(make list-targets BROKEN=$BROKEN)" # build all available
+
 
 if [[ $EUID -eq 0 ]]; then 
   echo "cannot be run as root" | tee $LOGFILE

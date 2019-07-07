@@ -12,7 +12,9 @@ git checkout v2018.2.2 #or something else
 cd gluon
 # adapt your site
 make update
-./buildAndDeploy.sh
+git clone https://github.com/herbetom/gluon-build-script.git
+# change the script according to your needs
+./gluon-build-script/buildAndDeploy.sh
 ```
 tip: call this script through ccze: `./buildAndDeploy.sh | ccze -A`
 
