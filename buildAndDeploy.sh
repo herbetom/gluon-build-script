@@ -34,7 +34,7 @@ for TARGET in $T; do
   echo "################# $(date) start building target $TARGET ###########################" | tee -a $LOGFILE
   start=$(date +%s)
 
-  make clean BROKEN=$BROKEN GLUON_TARGET=$TARGET | tee -a $LOGFILE
+  #make clean BROKEN=$BROKEN GLUON_TARGET=$TARGET | tee -a $LOGFILE
   make -j$NUM_CORES_PLUS_ONE GLUON_BRANCH=$GLUON_BRANCH GLUON_RELEASE=$GLUON_RELEASE BROKEN=$BROKEN GLUON_TARGET=$TARGET | tee -a $LOGFILE || exit 1 
 
   echo "time for $TARGET: "$((($(date +%s)-$start)/60))":"$((($(date +%s)-$start)%60))" Minuten" | tee -a $LOGFILE
@@ -48,9 +48,9 @@ if contrib/sign.sh $SECRET output/images/sysupgrade/$GLUON_BRANCH.manifest | tee
   echo "removing all content from "$IMAGEDEPLOYFOLDER""
   rm -rf $IMAGEDEPLOYFOLDER
   echo "copying generated images to "$IMAGEDEPLOYFOLDER""
-  rsync -a --info=progress2 output/images/ $IMAGEDEPLOYFOLDER | tee -a $LOGFILE
+  rsync -a --info=progress2 output/images/ $IMAGEDEPLOYFOLDER
   echo "copying generated packages to "$PACKAGESDEPLOYFOLDER""
-  rsync -a --info=progress2 output/packages/ $PACKAGESDEPLOYFOLDER | tee -a $LOGFILE
+  rsync -a --info=progress2 output/packages/ $PACKAGESDEPLOYFOLDER
 fi
 
 echo "################# $(date) finished script ###########################" | tee -a $LOGFILE
